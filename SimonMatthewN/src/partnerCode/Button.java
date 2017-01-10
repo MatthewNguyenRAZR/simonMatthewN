@@ -1,25 +1,32 @@
 package partnerCode;
 
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
+import gui.components.Action;
+import gui.components.Component;
 import simonMatthewN.ButtonInterfaceMatthew;
 
-public class Button implements ButtonInterfaceMatthew {
-
+public class Button extends Component implements ButtonInterfaceMatthew {
+	
+	private Action action;
+	private Color c;
+	
 	public Button() {
-		// TODO Auto-generated constructor stub
+		super(0,0,45,45);
 	}
 
 	@Override
 	public void act() {
-		// TODO Auto-generated method stub
-
+		//Action.act();
 	}
 
 	@Override
-	public boolean isHovered(int arg0, int arg1) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean isHovered(int x, int y) {
+		return x>getX() && x<getX()+getWidth() && y>getY() && y<getY()+getHeight();
 	}
 
 	@Override
@@ -59,9 +66,8 @@ public class Button implements ButtonInterfaceMatthew {
 	}
 
 	@Override
-	public void update() {
-		// TODO Auto-generated method stub
-
+	public void update(Graphics2D arg0) {
+		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 	}
 
 }
