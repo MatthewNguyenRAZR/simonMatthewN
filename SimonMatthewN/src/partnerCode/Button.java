@@ -34,33 +34,9 @@ public class Button extends Component implements ButtonInterfaceMatthew {
 	}
 
 	@Override
-	public int getHeight() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
 	public BufferedImage getImage() {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	@Override
-	public int getWidth() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int getX() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int getY() {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 
 	@Override
@@ -94,18 +70,6 @@ public class Button extends Component implements ButtonInterfaceMatthew {
 	}
 
 	@Override
-	public void setX(int i) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void setY(int i) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void setAction(Action action) {
 		this.action = action;
 	}
@@ -125,5 +89,17 @@ public class Button extends Component implements ButtonInterfaceMatthew {
 		if(lit){
 			
 		}
+	}
+
+	@Override
+	public void setX(int i) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setY(int i) {
+		// TODO Auto-generated method stub
+		
 	}
 }
