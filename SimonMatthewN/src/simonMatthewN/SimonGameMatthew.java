@@ -11,12 +11,15 @@ public class SimonGameMatthew extends GUIApplication {
 
 	@Override
 	public void initScreen() {
-		// TODO Auto-generated method stub
+		SimonScreenMatthew simonScreen = new SimonScreenMatthew(getWidth(),getHeight());
+		setScreen(simonScreen);
 
 	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		SimonGameMatthew simonGame = new SimonGameMatthew(800,500); //instantiate
+		Thread game = new Thread(simonGame); //create thread for game
+		game.start(); //start the thread/game
 
 	}
 
