@@ -13,14 +13,12 @@ public class SimonGameMatthew extends GUIApplication {
 	public void initScreen() {
 		SimonScreenMatthew simonScreen = new SimonScreenMatthew(getWidth(),getHeight());
 		setScreen(simonScreen);
-
 	}
 
 	public static void main(String[] args) {
 		SimonGameMatthew simonGame = new SimonGameMatthew(800,500); //instantiate
 		Thread game = new Thread(simonGame); //create thread for game
 		game.start(); //start the thread/game
-
 	}
 
 }
