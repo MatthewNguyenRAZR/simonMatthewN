@@ -7,7 +7,7 @@ public class Move implements MoveInterfaceMatthew {
 	
 	private ButtonInterfaceMatthew b;
 
-	public Move() {
+	public Move(ButtonInterfaceMatthew b) {
 		this.b = b;
 	}
 

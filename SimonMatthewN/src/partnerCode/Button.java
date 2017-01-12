@@ -15,7 +15,6 @@ public class Button extends Component implements ButtonInterfaceMatthew {
 	private Action action;
 	private Color c;
 	private Color displayC;
-	private boolean lit;
 	private static int W = 45;
 	private static int H = 45;
 	
@@ -49,7 +48,6 @@ public class Button extends Component implements ButtonInterfaceMatthew {
 	@Override
 	public void dim() {
 		this.setColor(Color.GRAY);
-		lit=false;
 		update();
 	}
 
@@ -58,7 +56,6 @@ public class Button extends Component implements ButtonInterfaceMatthew {
 		if(c != null){
 			displayC = c;
 		}
-		lit = true;
 		update();
 	}
 
@@ -79,15 +76,9 @@ public class Button extends Component implements ButtonInterfaceMatthew {
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		if(displayC != null){
 			g.setColor(displayC);
-		}else{
-			g.setColor(Color.gray);
-		}
-		g.fillOval(0, 0, W, H);
-		g.setColor(Color.BLACK);
-		//indents
-		g.drawOval(0, 0, W-5, H-5);
-		if(lit){
-			
+			g.fillOval(0, 0, W, H);
+			g.setColor(Color.BLACK);
+			g.drawOval(0, 0, W-1, H-1);
 		}
 	}
 
