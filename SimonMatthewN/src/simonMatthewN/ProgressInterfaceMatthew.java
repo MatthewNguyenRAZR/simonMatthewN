@@ -4,19 +4,10 @@ import gui.components.Visible;
 
 public interface ProgressInterfaceMatthew extends Visible{
 
-	static void setRound(int round) {
-		// TODO Auto-generated method stub
-		
-	}
+	void setRound(int round);
 
-	static void setSequenceSize(int size) {
-		// TODO Auto-generated method stub
-		
-	}
+	void setSequenceSize(int size);
 
-	static void gameOver() {
-		// TODO Auto-generated method stub
-		
-	}
+	void gameOver();
 
 }

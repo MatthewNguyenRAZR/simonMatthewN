@@ -8,6 +8,7 @@ import gui.components.Action;
 import gui.components.TextLabel;
 import gui.components.Visible;
 import gui.screens.ClickableScreen;
+import partnerCode.Move;
 
 public class SimonScreenMatthew extends ClickableScreen implements Runnable {
 	
@@ -19,8 +20,6 @@ public class SimonScreenMatthew extends ClickableScreen implements Runnable {
 	private boolean acceptingInput;
 	private int orderIndex;
 	private int lastChosen;
-	
-	
 
 	public SimonScreenMatthew(int width, int height) {
 		super(width, height);
@@ -29,11 +28,12 @@ public class SimonScreenMatthew extends ClickableScreen implements Runnable {
 	}
 
 	public void run(){
-	    label.setText("");
+		changeText("");
 	    nextRound();
 	}
-
+	
 	private void nextRound() {
+		/*
 		acceptingInput = false;
 		round++;
 		order.add(randomMove());
@@ -43,6 +43,19 @@ public class SimonScreenMatthew extends ClickableScreen implements Runnable {
 		label.setText("");
 		playSequence();
 		changeText("It is your turn.");
+		acceptingInput = true;
+		orderIndex = 0;
+		*/
+		acceptingInput = false;
+		round ++;
+		progress.setRound(round);
+		order.add(randomMove());
+		progress.setSequenceSize(order.size());
+		changeText("Simon's turn.");
+		label.setText("");
+		playSequence();
+		changeText("Your turn.");
+		label.setText("");
 		acceptingInput = true;
 		orderIndex = 0;
 	}
@@ -66,6 +79,7 @@ public class SimonScreenMatthew extends ClickableScreen implements Runnable {
 	}
 	
 	public void initAllObjects(List<Visible> viewObjects) {
+		/*
 		addButtons(viewObjects);
 		progress = getProgress();
 		label = new TextLabel(130,230,300,40," ");
@@ -77,8 +91,72 @@ public class SimonScreenMatthew extends ClickableScreen implements Runnable {
 		order.add(randomMove());
 		viewObjects.add(progress);
 		viewObjects.add(label);
+		*/
+		Color[] colors = {Color.red, Color.blue, new Color(240,160,70), new Color(20,255,140), Color.yellow, new Color(180,90,210)};
+		String[] names = {"RED", "BLUE", "ORANGE", "GREEN", "YELLOW", "PURPLE"};
+		int buttonCount = 6;
+		button = new ButtonInterfaceMatthew[buttonCount];
+		for(int i = 0; i < buttonCount; i++ ){
+			button[i] = getAButton();
+			button[i].setName(names[i]);
+			button[i].setColor(colors[i]);
+			button[i].setX(160 + (int)(100*Math.cos(i*2*Math.PI/(buttonCount))));
+			button[i].setY(200 - (int)(100*Math.sin(i*2*Math.PI/(buttonCount))));
+			final ButtonInterfaceMatthew b = button[i];
+			System.out.println(b+" has x = "+b.getX()+", y ="+b.getY());
+			b.dim();
+			button[i].setAction(new Action() {
+
+				public void act() {
+
+						Thread buttonPress = new Thread(new Runnable() {
+							
+							public void run() {
+								b.highlight();
+								try {
+									Thread.sleep(500);
+								} catch (InterruptedException e) {
+									e.printStackTrace();
+								}
+								b.dim();
+								
+							}
+						});
+						buttonPress.start();
+						
+
+						if(acceptingInput && order.get(orderIndex).getButton() == b){
+							orderIndex++;
+						}else if(acceptingInput){
+							gameOver();
+							return;
+						}
+						if(orderIndex == order.size()){
+							Thread nextRound = new Thread(SimonScreenMatthew.this);
+							nextRound.start();
+						}
+					}
+
+			});
+			viewObjects.add(button[i]);
+		}
+		progress = getProgress();
+		label = new TextLabel(130,230,300,40,"Let's play Simon!");
+		order = new ArrayList<MoveInterfaceMatthew>();
+		//add 2 moves to start
+		lastChosen = -1;
+		order.add(randomMove());
+		order.add(randomMove());
+		round = 0;
+
+		viewObjects.add(progress);
+		viewObjects.add(label);
 	}
 	
+	protected void gameOver() {
+		progress.gameOver();
+	}
+
 	private MoveInterfaceMatthew randomMove() {
 		ButtonInterfaceMatthew b;
 		//code that randomly selects a ButtonInterfaceX
@@ -93,14 +171,9 @@ public class SimonScreenMatthew extends ClickableScreen implements Runnable {
 		 * FIX LATER
 		 */
 		b = button[rand];
-		return getAMove(b);
+		return new Move(b);
 	}
-
-
-	private MoveInterfaceMatthew getAMove(ButtonInterfaceMatthew b) {
-		return null;
-	}
-
+	/*
 	private void addButtons(List<Visible> viewObjects) {
 		int numberOfButtons = 5;
 		//colors
@@ -143,7 +216,7 @@ public class SimonScreenMatthew extends ClickableScreen implements Runnable {
 			viewObjects.add(b);
 		}
 	}
-	
+	*/
 	private void changeText(String string) {
 		try{
 			label.setText(string);

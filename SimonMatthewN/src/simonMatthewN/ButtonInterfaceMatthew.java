@@ -19,4 +19,6 @@ public interface ButtonInterfaceMatthew extends Clickable {
 
 	void setAction(Action action);
 
+	void setName(String string);
+
 }
