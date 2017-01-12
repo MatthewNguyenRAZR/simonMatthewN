@@ -11,16 +11,15 @@ import gui.screens.ClickableScreen;
 
 public class SimonScreenMatthew extends ClickableScreen implements Runnable {
 	
-	private TextLabel label;
-	private ButtonInterfaceMatthew[] button;
-	private ProgressInterfaceMatthew progress;
+	private ProgressInterfaceMatthew user;
 	private ArrayList<MoveInterfaceMatthew> order;
+	private ButtonInterfaceMatthew[] button;
 	private int round;
 	private boolean acceptingInput;
 	private int orderIndex;
-	private int lastChosen;
-	
-	
+	private int last;
+	private TextLabel label;
+	private ProgressInterfaceMatthew progress;
 
 	public SimonScreenMatthew(int width, int height) {
 		super(width, height);
@@ -28,6 +27,7 @@ public class SimonScreenMatthew extends ClickableScreen implements Runnable {
 		simonStart.start();
 	}
 
+	@Override
 	public void run(){
 	    label.setText("");
 	    nextRound();
@@ -39,10 +39,10 @@ public class SimonScreenMatthew extends ClickableScreen implements Runnable {
 		order.add(randomMove());
 		ProgressInterfaceMatthew.setRound(round);
 		ProgressInterfaceMatthew.setSequenceSize(order.size());
-		changeText("It is Simon's turn.");
+		changeText("Simon's turn");
 		label.setText("");
 		playSequence();
-		changeText("It is your turn.");
+		changeText("Your turn");
 		acceptingInput = true;
 		orderIndex = 0;
 	}
@@ -64,15 +64,15 @@ public class SimonScreenMatthew extends ClickableScreen implements Runnable {
 		}
 		b.dim();
 	}
-	
-	public void initAllObjects(List<Visible> viewObjects) {
+
+	public void initAllObjects(ArrayList<Visible> viewObjects) {
 		addButtons(viewObjects);
 		progress = getProgress();
 		label = new TextLabel(130,230,300,40," ");
 		order = new ArrayList<MoveInterfaceMatthew>();
 		//add 2 moves to start
 		round = 0;
-		lastChosen = -1;
+		last = -1;
 		order.add(randomMove());
 		order.add(randomMove());
 		viewObjects.add(progress);
@@ -84,11 +84,11 @@ public class SimonScreenMatthew extends ClickableScreen implements Runnable {
 		//code that randomly selects a ButtonInterfaceX
 		int rand = (int)(Math.random()*button.length);
 		//if its equal then pick a new
-		while(rand == lastChosen){
+		while(rand == last){
 			rand = (int) (Math.random()*button.length);
 		}
 		//change the last select into rand
-		lastChosen = rand;
+		last = rand;
 		/**
 		 * FIX LATER
 		 */
@@ -124,14 +124,14 @@ public class SimonScreenMatthew extends ClickableScreen implements Runnable {
 									// TODO Auto-generated catch block
 									e.printStackTrace();
 								}
-								b.dim(); 
+								b.dim();
 							}
 						});
 						blink.start();
 						if(b == order.get(orderIndex).getButton()){
 							orderIndex++;
 						}else{
-							ProgressInterfaceMatthew.gameOver();
+							ProgressInterfaceMatthew.getOver();
 						}
 						if(orderIndex == order.size()){
 							Thread nextRound = new Thread(SimonScreenMatthew.this);
@@ -167,6 +167,12 @@ public class SimonScreenMatthew extends ClickableScreen implements Runnable {
 	private ButtonInterfaceMatthew getAButton() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void initAllObjects(List<Visible> arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
