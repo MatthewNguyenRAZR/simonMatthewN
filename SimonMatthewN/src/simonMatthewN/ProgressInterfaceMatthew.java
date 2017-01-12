@@ -14,7 +14,7 @@ public interface ProgressInterfaceMatthew extends Visible{
 		
 	}
 
-	static void getOver() {
+	static void gameOver() {
 		// TODO Auto-generated method stub
 		
 	}
