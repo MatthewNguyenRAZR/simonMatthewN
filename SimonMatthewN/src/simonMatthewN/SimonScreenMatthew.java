@@ -124,7 +124,7 @@ public class SimonScreenMatthew extends ClickableScreen implements Runnable {
 									// TODO Auto-generated catch block
 									e.printStackTrace();
 								}
-								b.dim();
+								b.dim(); 
 							}
 						});
 						blink.start();

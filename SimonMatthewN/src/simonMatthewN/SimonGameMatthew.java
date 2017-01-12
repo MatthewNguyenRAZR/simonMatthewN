@@ -9,7 +9,7 @@ public class SimonGameMatthew extends GUIApplication {
 		// TODO Auto-generated constructor stub 
 	}
 
-	@Override
+	@Override 
 	public void initScreen() {
 		SimonScreenMatthew simonScreen = new SimonScreenMatthew(getWidth(),getHeight());
 		setScreen(simonScreen);
