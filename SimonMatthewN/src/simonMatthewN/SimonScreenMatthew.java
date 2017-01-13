@@ -35,19 +35,6 @@ public class SimonScreenMatthew extends ClickableScreen implements Runnable {
 	} 
 	
 	private void nextRound() {
-		/*
-		acceptingInput = false;
-		round++;
-		order.add(randomMove());
-		ProgressInterfaceMatthew.setRound(round);
-		ProgressInterfaceMatthew.setSequenceSize(order.size());
-		changeText("It is Simon's turn.");
-		label.setText("");
-		playSequence();
-		changeText("It is your turn.");
-		acceptingInput = true;
-		orderIndex = 0;
-		*/
 		acceptingInput = false;
 		round ++;
 		progress.setRound(round);
@@ -81,7 +68,6 @@ public class SimonScreenMatthew extends ClickableScreen implements Runnable {
 	}
 	
 	public void initAllObjects(List<Visible> viewObjects) {
-		/*
 		addButtons(viewObjects);
 		progress = getProgress();
 		label = new TextLabel(130,230,300,40," ");
@@ -91,66 +77,6 @@ public class SimonScreenMatthew extends ClickableScreen implements Runnable {
 		lastChosen = -1;
 		order.add(randomMove());
 		order.add(randomMove());
-		viewObjects.add(progress);
-		viewObjects.add(label);
-		*/
-		Color[] colors = {Color.red, Color.blue, new Color(240,160,70), new Color(20,255,140), Color.yellow, new Color(180,90,210)};
-		String[] names = {"RED", "BLUE", "ORANGE", "GREEN", "YELLOW", "PURPLE"};
-		int buttonCount = 6;
-		button = new ButtonInterfaceMatthew[buttonCount];
-		for(int i = 0; i < buttonCount; i++ ){
-			button[i] = getAButton();
-			button[i].setName(names[i]);
-			button[i].setColor(colors[i]);
-			button[i].setX(160 + (int)(100*Math.cos(i*2*Math.PI/(buttonCount))));
-			button[i].setY(200 - (int)(100*Math.sin(i*2*Math.PI/(buttonCount))));
-			final ButtonInterfaceMatthew b = button[i];
-			System.out.println(b+" has x = "+b.getX()+", y ="+b.getY());
-			b.dim();
-			button[i].setAction(new Action() {
-
-				public void act() {
-
-						Thread buttonPress = new Thread(new Runnable() {
-							
-							public void run() {
-								b.highlight();
-								try {
-									Thread.sleep(500);
-								} catch (InterruptedException e) {
-									e.printStackTrace();
-								}
-								b.dim();
-								
-							}
-						});
-						buttonPress.start();
-						
-
-						if(acceptingInput && order.get(orderIndex).getButton() == b){
-							orderIndex++;
-						}else if(acceptingInput){
-							gameOver();
-							return;
-						}
-						if(orderIndex == order.size()){
-							Thread nextRound = new Thread(SimonScreenMatthew.this);
-							nextRound.start();
-						}
-					}
-
-			});
-			viewObjects.add(button[i]);
-		}
-		progress = getProgress();
-		label = new TextLabel(130,230,300,40,"Let's play Simon!");
-		order = new ArrayList<MoveInterfaceMatthew>();
-		//add 2 moves to start
-		lastChosen = -1;
-		order.add(randomMove());
-		order.add(randomMove());
-		round = 0;
-
 		viewObjects.add(progress);
 		viewObjects.add(label);
 	}
@@ -169,7 +95,7 @@ public class SimonScreenMatthew extends ClickableScreen implements Runnable {
 		b = button[rand];
 		return new Move(b);
 	}
-	/*
+	
 	private void addButtons(List<Visible> viewObjects) {
 		int numberOfButtons = 5;
 		//colors
@@ -200,7 +126,7 @@ public class SimonScreenMatthew extends ClickableScreen implements Runnable {
 						if(b == order.get(orderIndex).getButton()){
 							orderIndex++;
 						}else{
-							ProgressInterfaceMatthew.gameOver();
+							gameOver();
 						}
 						if(orderIndex == order.size()){
 							Thread nextRound = new Thread(SimonScreenMatthew.this);
@@ -212,7 +138,7 @@ public class SimonScreenMatthew extends ClickableScreen implements Runnable {
 			viewObjects.add(b);
 		}
 	}
-	*/
+	
 	private void changeText(String string) {
 		try{
 			label.setText(string);
