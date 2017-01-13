@@ -8,6 +8,8 @@ import gui.components.Action;
 import gui.components.TextLabel;
 import gui.components.Visible;
 import gui.screens.ClickableScreen;
+import partnerCode.Progress;
+import partnerCode.Button;
 import partnerCode.Move;
 
 public class SimonScreenMatthew extends ClickableScreen implements Runnable {
@@ -30,7 +32,7 @@ public class SimonScreenMatthew extends ClickableScreen implements Runnable {
 	public void run(){
 		changeText("");
 	    nextRound();
-	}
+	} 
 	
 	private void nextRound() {
 		/*
@@ -159,17 +161,11 @@ public class SimonScreenMatthew extends ClickableScreen implements Runnable {
 
 	private MoveInterfaceMatthew randomMove() {
 		ButtonInterfaceMatthew b;
-		//code that randomly selects a ButtonInterfaceX
 		int rand = (int)(Math.random()*button.length);
-		//if its equal then pick a new
 		while(rand == lastChosen){
 			rand = (int) (Math.random()*button.length);
 		}
-		//change the last select into rand
 		lastChosen = rand;
-		/**
-		 * FIX LATER
-		 */
 		b = button[rand];
 		return new Move(b);
 	}
@@ -225,23 +221,14 @@ public class SimonScreenMatthew extends ClickableScreen implements Runnable {
 			e.printStackTrace();
 		}
 	}
-
-	/**
-	 * FOR PARTNER TO FINSISH
-	 */
-	private ProgressInterfaceMatthew getProgress() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
-	/**
-	 * FOR PARTNER TO FINSISH
-	 */
-	private ButtonInterfaceMatthew getAButton() {
-		// TODO Auto-generated method stub
-		return null;
+	private ProgressInterfaceMatthew getProgress() {
+		return new Progress();
 	}
 
+	private ButtonInterfaceMatthew getAButton() {
+		return new Button();
+	}
 	@Override
 	public void initObjects(ArrayList<Visible> arg0) {
 		// TODO Auto-generated method stub
