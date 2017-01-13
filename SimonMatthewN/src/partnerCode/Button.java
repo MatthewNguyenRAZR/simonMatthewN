@@ -14,6 +14,7 @@ public class Button extends Component implements ButtonInterfaceMatthew {
 
 	private static final int WIDTH = 50;
 	private static final int HEIGHT = 50;
+	private String name;
 	private Action action;
 	private Color c;
 	private Color displayColor;
@@ -79,7 +80,6 @@ public class Button extends Component implements ButtonInterfaceMatthew {
 
 	@Override
 	public void setName(String string) {
-		// TODO Auto-generated method stub
-		
+		this.name=string;
 	}
 }
