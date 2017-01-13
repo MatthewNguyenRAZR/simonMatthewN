@@ -1,4 +1,4 @@
-	package partnerCode;
+package partnerCode;
 
 import java.awt.Color;
 import java.awt.FontMetrics;
@@ -21,17 +21,14 @@ public class Progress extends Component implements ProgressInterfaceMatthew {
 		super(60, 60, W, H);
 		
 	}
-	
 	public void setRound(int roundNumber) {
 		round = "Round "+roundNumber;
 		update();
 	}
-	
 	public void gameOver() {
 		gameOver = true;
 		update();
 	}
-
 	@Override
 	public void update(Graphics2D g) {
 		g = clear();
