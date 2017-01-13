@@ -3,8 +3,6 @@ package partnerCode;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
-import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 
 import gui.components.Action;
 import gui.components.Component;
