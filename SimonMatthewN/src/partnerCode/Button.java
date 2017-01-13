@@ -11,62 +11,44 @@ import gui.components.Component;
 import simonMatthewN.ButtonInterfaceMatthew;
 
 public class Button extends Component implements ButtonInterfaceMatthew {
-	
+
+	private static final int WIDTH = 50;
+	private static final int HEIGHT = 50;
 	private Action action;
 	private Color c;
-	private Color displayC;
-	private static int W = 45;
-	private static int H = 45;
+	private Color displayColor;
+	private boolean highlight;
 	
 	public Button() {
-		super(0,0,W,H);
+		super(0,0,WIDTH,HEIGHT);
 	}
 
-	@Override
-	public void act() {
-//		Action.act();
-	}
-
-	@Override
 	public boolean isHovered(int x, int y) {
 		return x>getX() && x<getX()+getWidth() && y>getY() && y<getY()+getHeight();
 	}
 
-	@Override
-	public BufferedImage getImage() {
-		// TODO Auto-generated method stub
-		return null;
+	public void act() {
+		action.act();
 	}
-
-	@Override
-	public boolean isAnimated() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-
-	@Override
-	public void dim() {
-		this.setColor(Color.GRAY);
-		update();
-	}
-
-	@Override
-	public void highlight() {
-		if(c != null){
-			displayC = c;
-		}
-		update();
-	}
-
-	@Override
+	
 	public void setColor(Color color) {
 		this.c = color;
-		displayC = c;
+		displayColor = c;
 		update();
 	}
 
-	@Override
+	public void highlight() {
+		if(c != null) displayColor = c;
+		highlight = true;
+		update();
+	}
+
+	public void dim() {
+		displayColor = Color.gray;
+		highlight = false;
+		update();
+	}
+
 	public void setAction(Action action) {
 		this.action = action;
 	}
@@ -74,12 +56,13 @@ public class Button extends Component implements ButtonInterfaceMatthew {
 	@Override
 	public void update(Graphics2D g) {
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		if(displayC != null){
-			g.setColor(displayC);
-			g.fillOval(0, 0, W, H);
+		if(displayColor != null){
+			g.setColor(displayColor);
+			g.fillOval(0, 0, WIDTH, HEIGHT);
 			g.setColor(Color.BLACK);
-			g.drawOval(0, 0, W-1, H-1);
+			g.drawOval(0, 0, WIDTH-1, HEIGHT-1);
 		}
+		
 	}
 
 	@Override
@@ -90,6 +73,12 @@ public class Button extends Component implements ButtonInterfaceMatthew {
 
 	@Override
 	public void setY(int i) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setName(String string) {
 		// TODO Auto-generated method stub
 		
 	}
