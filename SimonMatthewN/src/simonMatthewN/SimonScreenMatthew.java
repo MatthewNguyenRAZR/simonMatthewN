@@ -70,13 +70,13 @@ public class SimonScreenMatthew extends ClickableScreen implements Runnable {
 	public void initAllObjects(List<Visible> viewObjects) {
 		addButtons(viewObjects);
 		progress = getProgress();
-		label = new TextLabel(130,230,300,40," ");
+		label = new TextLabel(130,300,300,40,"");
 		order = new ArrayList<MoveInterfaceMatthew>();
 		//add 2 moves to start
-		round = 0;
 		lastChosen = -1;
 		order.add(randomMove());
 		order.add(randomMove());
+		round = 0;
 		viewObjects.add(progress);
 		viewObjects.add(label);
 	}
@@ -101,13 +101,16 @@ public class SimonScreenMatthew extends ClickableScreen implements Runnable {
 		//colors
 		Color[] buttonColor = {Color.blue, Color.red,Color.black,Color.orange,Color.pink};
 		//place all buttons
+		button = new ButtonInterfaceMatthew[numberOfButtons];
 		for(int i =0; i < numberOfButtons; i++){
 			//b is an object that is a button interface
-			final ButtonInterfaceMatthew b = getAButton();
-			b.setColor(buttonColor[i]);
-			b.setX(160 + (int)(100*Math.cos(i*2*Math.PI/(buttonCount))));
-			b.setY(200 - (int)(100*Math.sin(i*2*Math.PI/(buttonCount))));
-			b.setAction(new Action(){
+			button[i] = getAButton();
+			button[i].setColor(buttonColor[i]);
+			button[i].setX(220 + (i * 75));
+			button[i].setY(200);
+			final ButtonInterfaceMatthew b = button[i];
+			b.dim();
+			button[i].setAction(new Action(){
 				public void act(){
 					if(acceptingInput){
 						Thread blink = new Thread(new Runnable(){
@@ -155,9 +158,8 @@ public class SimonScreenMatthew extends ClickableScreen implements Runnable {
 	private ButtonInterfaceMatthew getAButton() {
 		return new Button();
 	}
-	@Override
-	public void initObjects(ArrayList<Visible> arg0) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+	
 }
