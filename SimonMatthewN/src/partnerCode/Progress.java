@@ -31,24 +31,24 @@ public class Progress extends Component implements ProgressInterfaceMatthew {
 	}
 	@Override
 	public void update(Graphics2D g) {
-		g = clear();
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		FontMetrics fm = g.getFontMetrics();
-		if(gameOver){
-			g.setColor(Color.RED);
-			g.fillRect(0, 0, W, H);
+		if (gameOver) {
+			g.setColor(new Color(255, 55, 90));
+			g.fillOval(0, 0, W, H);
+			g.setColor(Color.white);
+			String go = "GAME OVER!";
+			g.drawString(go, (W - fm.stringWidth(go)) / 2, 20);
+			g.drawString(sequence, (W - fm.stringWidth(sequence)) / 2, 40);
+
+		} else {
+			g.setColor(new Color(220, 255, 230));
+			g.fillOval(0, 0, W, H);
 			g.setColor(Color.black);
-			String text = "Game Over";
-			g.drawString(text, 40,20);
-			g.drawString(sequence, 40, 40);
-		}else{
-			g.setColor(Color.pink);
-			g.fillRect(0, 0, W, H);
-			g.setColor(Color.black);
-			g.drawRect(0, 0, W-1, H-1);
-			if(round !=null && sequence != null){
-				g.drawString(round, 40, 20);
-				g.drawString(sequence, 40, 40);
+			if (round != null && sequence != null) {
+
+				g.drawString(round, (W - fm.stringWidth(round)) / 2, 20);
+				g.drawString(sequence, (W - fm.stringWidth(sequence)) / 2, 40);
 			}
 		}
 	}
