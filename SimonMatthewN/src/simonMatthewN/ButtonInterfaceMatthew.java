@@ -13,12 +13,6 @@ public interface ButtonInterfaceMatthew extends Clickable {
 
 	void setColor(Color color);
 
-	void setX(int i);
-
-	void setY(int i);
-
 	void setAction(Action action);
-
-	void setName(String string);
 
 }
