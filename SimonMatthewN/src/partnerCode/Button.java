@@ -61,38 +61,9 @@ public class Button extends Component implements ButtonInterfaceMatthew {
 		else g.setColor(Color.gray);
 		g.fillOval(0, 0, WIDTH, HEIGHT);
 		g.setColor(Color.black);
-		g.drawOval(0, 0, WIDTH-1, HEIGHT-1);
-		if(highlight){
-			g.setColor(Color.white);
-			Polygon p = new Polygon();
-			
-			int s = (int)(5/8.0 * WIDTH);
-			int t = (int)(1.0/5*HEIGHT)+4;
-			p.addPoint(s-4, t-4);
-			p.addPoint(s+7, t-2);
-			p.addPoint(s+10, t);
-			p.addPoint(s+14, t+10);
-			p.addPoint(s+12, t+14);
-			p.addPoint(s+8, t+3);
-			g.fill(p);
-		}
+		g.drawOval(0, 0, WIDTH-1, HEIGHT-1);	
 		
 	}
 
-	@Override
-	public void setX(int i) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void setY(int i) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void setName(String string) {
-		this.name=string;
-	}
+	
 }
