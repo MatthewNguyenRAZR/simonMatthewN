@@ -51,15 +51,13 @@ public class SimonScreenMatthew extends ClickableScreen implements Runnable {
 
 	private void playSequence() {
 		ButtonInterfaceMatthew b = null;
-		for(int i =0; i<order.size();i++){
-			if(b != null){
+		for (MoveInterfaceMatthew m : order) {
+			if (b != null)
 				b.dim();
-			}
-			//b = ((ButtonInterface)order).getButton();
-			b = order.get(i).getButton();
+			b = m.getButton();
 			b.highlight();
 			try {
-				Thread.sleep((long)(2000*(2.0/(round+2))));
+				Thread.sleep((long) (2000 * (2.0 / (round + 2))));
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
@@ -86,14 +84,12 @@ public class SimonScreenMatthew extends ClickableScreen implements Runnable {
 	}
 
 	private MoveInterfaceMatthew randomMove() {
-		ButtonInterfaceMatthew b;
 		int rand = (int)(Math.random()*button.length);
 		while(rand == lastChosen){
 			rand = (int) (Math.random()*button.length);
 		}
 		lastChosen = rand;
-		b = button[rand];
-		return new Move(b);
+		return new Move(button[rand]);
 	}
 	
 	private void addButtons(ArrayList<Visible> viewObjects) {
@@ -126,19 +122,21 @@ public class SimonScreenMatthew extends ClickableScreen implements Runnable {
 							}
 						});
 						blink.start();
-						if(b == order.get(orderIndex).getButton()){
+						if (acceptingInput && order.get(orderIndex).getButton() == b) {
 							orderIndex++;
-						}else{
+						} else if (acceptingInput) {
 							gameOver();
+							acceptingInput = false;
+							return;
 						}
-						if(orderIndex == order.size()){
+						if (orderIndex == order.size()) {
 							Thread nextRound = new Thread(SimonScreenMatthew.this);
-							nextRound.start(); 
+							nextRound.start();
 						}
 					}
 				}
 			});
-			viewObjects.add(b);
+			viewObjects.add(button[i]);
 		}
 	}
 	
