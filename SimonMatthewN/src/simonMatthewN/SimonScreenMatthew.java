@@ -106,7 +106,7 @@ public class SimonScreenMatthew extends ClickableScreen implements Runnable {
 			//b is an object that is a button interface
 			button[i] = getAButton();
 			button[i].setColor(buttonColor[i]);
-			button[i].setX(220 + (i * 75));
+			button[i].setX(100 + (i * 130));
 			button[i].setY(200);
 			final ButtonInterfaceMatthew b = button[i];
 			b.dim();
