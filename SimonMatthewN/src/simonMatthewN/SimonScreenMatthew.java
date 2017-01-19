@@ -43,7 +43,7 @@ public class SimonScreenMatthew extends ClickableScreen implements Runnable {
 		changeText("Simon's turn.");
 		label.setText("");
 		playSequence();
-		changeText("Your turn. Follow what colors Simon chose.");
+		changeText("Your turn. Follow Simon.");
 		label.setText("");
 		acceptingInput = true;
 		orderIndex = 0;
