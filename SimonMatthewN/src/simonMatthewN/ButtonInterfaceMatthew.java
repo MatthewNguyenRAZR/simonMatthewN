@@ -5,6 +5,7 @@ import java.awt.Color;
 import gui.components.Action;
 import gui.components.Clickable;
 
+
 public interface ButtonInterfaceMatthew extends Clickable {
 
 	void dim();

@@ -92,7 +92,7 @@ public class SimonScreenMatthew extends ClickableScreen implements Runnable {
 		return new Move(button[rand]);
 	}
 	
-	private void addButtons(ArrayList<Visible> viewObjects) {
+	private void addButtons(List<Visible> viewObjects) {
 		int numberOfButtons = 5;
 		//colors
 		Color[] buttonColor = {Color.blue, Color.red,Color.black,Color.orange,Color.pink};
@@ -108,6 +108,7 @@ public class SimonScreenMatthew extends ClickableScreen implements Runnable {
 			b.dim();
 			button[i].setAction(new Action(){
 				public void act(){
+					System.out.println("Button clicked");
 					if(acceptingInput){
 						Thread blink = new Thread(new Runnable(){
 							public void run(){
@@ -158,6 +159,7 @@ public class SimonScreenMatthew extends ClickableScreen implements Runnable {
 	}
 
 
+	
 
 	
 }
