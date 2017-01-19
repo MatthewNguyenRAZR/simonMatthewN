@@ -59,9 +59,9 @@ public class Button extends Component implements ButtonInterfaceMatthew {
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		if(displayColor != null) g.setColor(displayColor);
 		else g.setColor(Color.gray);
-		g.fillOval(0, 0, WIDTH, HEIGHT);
+		g.fillRect(0, 0, WIDTH, HEIGHT);
 		g.setColor(Color.black);
-		g.drawOval(0, 0, WIDTH-1, HEIGHT-1);	
+		g.drawRect(0, 0, WIDTH-1, HEIGHT-1);	
 		
 	}
 
