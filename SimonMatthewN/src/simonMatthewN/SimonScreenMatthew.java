@@ -67,7 +67,7 @@ public class SimonScreenMatthew extends ClickableScreen implements Runnable {
 		b.dim();
 	}
 	
-	public void initAllObjects(List<Visible> viewObjects) {
+	public void initAllObjects(ArrayList<Visible> viewObjects) {
 		addButtons(viewObjects);
 		progress = getProgress();
 		label = new TextLabel(130,300,300,40,"");
@@ -96,7 +96,7 @@ public class SimonScreenMatthew extends ClickableScreen implements Runnable {
 		return new Move(b);
 	}
 	
-	private void addButtons(List<Visible> viewObjects) {
+	private void addButtons(ArrayList<Visible> viewObjects) {
 		int numberOfButtons = 5;
 		//colors
 		Color[] buttonColor = {Color.blue, Color.red,Color.black,Color.orange,Color.pink};
